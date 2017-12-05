@@ -58,7 +58,7 @@ var player; //player object
 var ropeCounter = 6; //number of ropes the player starts with
 var shieldOn = false; //a boolean that flags if the shield is on or off
 
-var winLevel = false; //a boolean that flags if the player has won
+var loseFlag = false; //a boolean that flags if the player has won
 var score = 0; //player starting score
 
 //text
@@ -124,7 +124,7 @@ function create() {
     music.play();
 
     //text
-    scareTXT = game.add.bitmapText(wallWidthToScale + 20, 30, 'fonti', 'Score '+score, 50);
+    scoreTXT = game.add.bitmapText(wallWidthToScale + 20, 30, 'fonti', 'Score '+score, 50);
     ropeTXT = game.add.bitmapText(game.world.width - wallWidthToScale-200, 20,'fonti','Ropes '+ropeCounter, 50);
 }
 
@@ -140,6 +140,9 @@ function update() {
     updateItems();
     drawRope();
     
+    if(!loseFlag){
+        updateScore();
+    }
     
 
 }
@@ -175,7 +178,7 @@ function hitFuel(body1, body2)
     console.log("hit Fuel");
     ropeCounter += 5;
  
-    ropeTXT.text = "Ropes " + ropeCounter;   
+    ropeTXT.text = "Ropes " + ropeCounter;  
     console.log("ropes " + ropeCounter);
         
     //body1.removeCollisionGroup();
@@ -184,4 +187,14 @@ function hitFuel(body1, body2)
     items.children.splice(ind,1);
     
     
+}
+
+
+function updateScore()
+{
+    score += speedOfLevel/5;
+    
+    score = Math.round(score);
+    //text update
+    scoreTXT.text = "Score " + score;
 }
