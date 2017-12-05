@@ -7,7 +7,9 @@ function createPlayer(x) {
 
     //error causing
     game.physics.p2.enable(player, false);
+    
     //player.body.collideWorldBounds = false;
+    //to solve the world bounds porblem, 
     
     //player.body.clearShapes();
     //player.body.loadPolygon("sprite_physics", "player");
@@ -169,4 +171,15 @@ function updateSeat() {
     } else {
         pSeat.body.y += speedOfLevel;
     }
+}
+
+function createLand() {
+
+	var sprite = game.add.sprite(game.world.width / 2,game.world.height, game.cache.getBitmapData('blueShade'));
+
+    
+    game.physics.p2.enable(sprite, false);
+    sprite.body.createBodyCallback(player, hitEnemy, this);
+    sprite.body.static = true;
+
 }

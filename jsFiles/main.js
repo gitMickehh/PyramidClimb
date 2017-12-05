@@ -40,7 +40,9 @@ var soundDrawLine;
 var soundCollect;
 
 //world bounds?
-var customBounds;
+//var customBounds;
+//use a collider at the edge of the screen at the bottom for triggering you lose.
+//var invisibleLand;
 
 //level mods
 var startGame = false;
@@ -127,8 +129,7 @@ function create() {
     //creating the rope
     createRope(player.body.x, player.body.y);
 
-    //player interactions
-
+    //player interactions / events
     game.physics.p2.setImpactEvents(true);
 
     //audio
@@ -144,6 +145,23 @@ function create() {
     scoreTXT = game.add.bitmapText(wallWidthToScale + 20, 30, 'fonti', 'Score ' + score, 50);
     ropeTXT = game.add.bitmapText(game.world.width - wallWidthToScale - 200, 20, 'fonti', 'Ropes ' + ropeCounter, 50);
     
+    //invisible wall
+    //	Create our bitmapData which we'll use as a Sprite texture
+	var bmd = game.add.bitmapData(game.world.width,2);
+
+	//	Fill it
+    var grd = bmd.context.createLinearGradient(0, 0, 0, 32);
+
+    grd.addColorStop(0, '#8ED6FF');
+    grd.addColorStop(1, '#004CB3');
+    bmd.context.fillStyle = grd;
+    bmd.context.fillRect(0, 0, 800, 800);
+
+    //Put the bitmapData into the cache
+    game.cache.addBitmapData('blueShade', bmd);
+    
+    //This one is just for reference (next to the instructions text)
+    createLand();
 }
 
 function update() {
@@ -177,7 +195,7 @@ function hitEnemy(body1, body2) {
         console.log("you lose");
         loseFlag = true;
         speedOfLevel = 0;
-        youLoseTXT = game.add.bitmapText(game.world.width / 2, game.world.height / 2, "fonti", "You lose!", 120);
+        youLoseTXT = game.add.bitmapText(game.world.width / 2, game.world.height / 2, "fonti", "You lose!", 100);
         youLoseTXT.anchor.x = 0.5
         youLoseTXT.anchor.y = 0.5
     }
