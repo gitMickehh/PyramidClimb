@@ -1,0 +1,11 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background: black;
+}
+
+#game-div{
+    margin-left: 25%;
+/*    width: 80%;*/
+/*    height: 80%;*/
+}
