@@ -7,6 +7,8 @@ function createPlayer(x) {
 
     //error causing
     game.physics.p2.enable(player, false);
+    //player.body.collideWorldBounds = false;
+    
     //player.body.clearShapes();
     //player.body.loadPolygon("sprite_physics", "player");
 
@@ -30,7 +32,7 @@ function createSheild(x, negativeY) {
     var item = items.create(x, -negativeY, 'shield');
     item.scale.setTo(gameScale, gameScale);
     //item.body.immovable = true;    
-    game.physics.p2.enable(item, true);
+    game.physics.p2.enable(item, false);
     item.body.setCircle(30);
     item.body.static = true;
 
@@ -44,7 +46,7 @@ function createFuel(x, negativeY) {
     var item = items.create(x, -negativeY, 'fuel');
     item.scale.setTo(gameScale, gameScale);
     //item.body.immovable = true;
-    game.physics.p2.enable(item, true);
+    game.physics.p2.enable(item, false);
     item.body.setCircle(30);
     item.body.static = true;
 
@@ -90,6 +92,10 @@ function createOpWalls(y) {
     walls.events.onInputDown.add(changeRope, this);
     walls2.inputEnabled = true;
     walls2.events.onInputDown.add(changeRope, this);
+    
+
+    //walls.body.createBodyCallback(player, hitWall, this);
+    //walls2.body.createBodyCallback(player, hitWall, this);
 }
 
 //updating the objects
