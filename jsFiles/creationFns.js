@@ -179,7 +179,7 @@ function createLand() {
 
     
     game.physics.p2.enable(sprite, false);
-    sprite.body.createBodyCallback(player, hitEnemy, this);
+    sprite.body.createBodyCallback(player, hitLine, this);
     sprite.body.static = true;
 
 }

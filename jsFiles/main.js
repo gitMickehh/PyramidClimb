@@ -66,7 +66,7 @@ var clickedWall;
 
 //player
 var player; //player object
-var ropeCounter = 10; //number of ropes the player starts with
+var ropeCounter = 20; //number of ropes the player starts with
 var shieldOn = false; //a boolean that flags if the shield is on or off
 
 var loseFlag = false; //a boolean that flags if the player has won
@@ -212,6 +212,24 @@ function hitEnemy(body1, body2) {
         youLoseTXT.anchor.x = 0.5
         youLoseTXT.anchor.y = 0.5
     }
+}
+
+function hitLine(body1, body2) {
+    console.log("hit end line");
+
+    if (shieldOn) {
+        console.log("you get a chance");
+        shieldOn = !shieldOn;
+    } else {
+        console.log("you lose");
+        loseFlag = true;
+        speedOfLevel = 0;
+        youLoseTXT = game.add.bitmapText(game.world.width / 2, game.world.height / 2, "fonti", "You lose!", 100);
+        youLoseTXT.anchor.x = 0.5
+        youLoseTXT.anchor.y = 0.5
+    }
+    
+    
 }
 
 function hitShield(body1, body2) {
