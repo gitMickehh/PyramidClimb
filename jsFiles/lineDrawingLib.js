@@ -7,34 +7,36 @@ var firstRopeFlag = false;
 
 function changeRope(sprite, pointer) {
 
-    if (!loseFlag) {
-        if (!startGame) {
-            speedOfLevel = constSpeed;
+    if (!pauseFlag) {
+        if (!loseFlag) {
+            if (!startGame) {
+                speedOfLevel = constSpeed;
+            }
+            if (ropeCounter <= 0) {
+                console.log("out of ropes");
+
+                //play a sound
+            } else {
+
+                ropeCounter--;
+                firstRopeFlag = true;
+                clickedWall = sprite;
+
+                soundDrawLine.play();
+
+                //Remove last spring
+                game.physics.p2.removeSpring(rope);
+                //console.log("clicked wall " + clickedWall);
+
+                //Create new spring at pointer x and y
+                rope = game.physics.p2.createSpring(clickedWall, player, 80, 15, 6, [-pointer.x, -pointer.y]);
+                ropeAnchorX = pointer.x;
+                ropeAnchorY = pointer.y
+
+                //play a sound
+
+            } //end else
         }
-        if (ropeCounter <= 0) {
-            console.log("out of ropes");
-
-            //play a sound
-        } else {
-
-            ropeCounter--;
-            firstRopeFlag = true;
-            clickedWall = sprite;
-
-            soundDrawLine.play();
-
-            //Remove last spring
-            game.physics.p2.removeSpring(rope);
-            //console.log("clicked wall " + clickedWall);
-
-            //Create new spring at pointer x and y
-            rope = game.physics.p2.createSpring(clickedWall, player, 80, 15, 6, [-pointer.x, -pointer.y]);
-            ropeAnchorX = pointer.x;
-            ropeAnchorY = pointer.y
-
-            //play a sound
-
-        } //end else
     }
 }
 

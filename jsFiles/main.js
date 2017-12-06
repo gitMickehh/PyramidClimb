@@ -72,10 +72,18 @@ var shieldOn = false; //a boolean that flags if the shield is on or off
 var loseFlag = false; //a boolean that flags if the player has won
 var score = 0; //player starting score
 
+
+//pause
+var pause;
+var pauseFlag = false;
+
 //text
 var scareTXT;
 var ropeTXT;
 var youLoseTXT;
+var pauseTXT;
+
+
 
 function create() {
 
@@ -162,6 +170,10 @@ function create() {
     
     //This one is just for reference (next to the instructions text)
     createLand();
+    
+    //pause
+    pause = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    pause.onDown.add(PAUSE, this);
 }
 
 function update() {
@@ -174,7 +186,8 @@ function update() {
     propagateWalls();
     updateEnemies();
     updateItems();
-    drawRope();
+    
+        drawRope();
 
     if (!loseFlag) {
         updateScore();
@@ -227,7 +240,6 @@ function hitFuel(body1, body2) {
     items.children.splice(ind, 1);
 
     soundCollect.play();
-
 }
 
 function hitWall(body1, body2) {
@@ -242,4 +254,22 @@ function updateScore() {
     score = Math.round(score);
     //text update
     scoreTXT.text = "Score " + score;
+}
+
+//pause function
+function PAUSE () {
+    
+    if(game.paused)
+    {
+        pauseTXT.text="";
+        game.paused = false;
+        pauseFlag = false;
+    }
+    else{
+        game.paused = true;
+        pauseTXT = game.add.bitmapText(game.world.width / 2, game.world.height / 2,'fonti','Press ESC to continue', 60);
+        pauseTXT.anchor.x = 0.5;
+        pauseTXT.anchor.y = 0.5;
+        pauseFlag = true;
+    }
 }
