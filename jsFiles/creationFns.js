@@ -17,8 +17,8 @@ function createPlayer(x) {
 }
 
 //creates enemy at specific X and afterLoop is when the enemy shows up after n of loops. 0 means at the top when the game starts.
-function createEnemy(x, negativeY) {
-    var enemy = enemies.create(x, -negativeY, 'enm1');
+function createEnemy() {
+    var enemy = enemies.create(generateX(), -generateY(), 'enm1');
     enemy.scale.setTo(gameScale, gameScale);
     //enemy.body.immovable = true;
 
@@ -29,9 +29,9 @@ function createEnemy(x, negativeY) {
 }
 
 //creates shield at X and Y
-function createSheild(x, negativeY) {
+function createSheild() {
     
-    var item = items.create(x, -negativeY, 'shield');
+    var item = items.create(generateX(), -generateY(), 'shield');
     item.scale.setTo(gameScale, gameScale);
     //item.body.immovable = true;    
     game.physics.p2.enable(item, false);
@@ -43,9 +43,9 @@ function createSheild(x, negativeY) {
 }
 
 //creates shield at X and Y
-function createFuel(x, negativeY) {
+function createFuel() {
     
-    var item = items.create(x, -negativeY, 'fuel');
+    var item = items.create(generateX(), -generateY(), 'fuel');
     item.scale.setTo(gameScale, gameScale);
     //item.body.immovable = true;
     game.physics.p2.enable(item, false);
