@@ -10,12 +10,12 @@ var random;
 
 function preload() {
 
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('wall', 'assets/wallPH.png');
-    game.load.image('enm1', 'assets/enemyPH.png');
-    game.load.image('fuel', 'assets/FuelPH.png');
-    game.load.image('shield', 'assets/NIMage.png');
-    game.load.image('player', 'assets/playerPH.png');
+    game.load.image('sky', 'assets/PyramidClimbArt/sky1.png');
+    game.load.image('wall', 'assets/PyramidClimbArt/wallPH1.png');
+    game.load.image('enm1', 'assets/PyramidClimbArt/enemyPH1.png');
+    game.load.image('fuel', 'assets/PyramidClimbArt/FuelPH1.png');
+    game.load.image('shield', 'assets/PyramidClimbArt/NImage1.png');
+    game.load.image('player', 'assets/PyramidClimbArt/playerPH1.png');
     game.load.image('playerSeat', 'assets/FirstLevelSeat.png');
 
     //font
