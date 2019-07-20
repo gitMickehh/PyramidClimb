@@ -47,7 +47,7 @@ function createRope(x, y) {
     ropeBitmapData = game.add.bitmapData(game.world.width, game.world.height);
 
     ropeBitmapData.ctx.beginPath();
-    ropeBitmapData.ctx.lineWidth = "3";
+    ropeBitmapData.ctx.lineWidth = "4";
     ropeBitmapData.ctx.strokeStyle = "#000000";
     ropeBitmapData.ctx.stroke();
 
@@ -93,7 +93,7 @@ function drawRope() {
             ropeBitmapData.ctx.beginPath();
             ropeBitmapData.ctx.moveTo(player.x, player.y);
             ropeBitmapData.ctx.lineTo(ropeAnchorX, ropeAnchorY);
-            ropeBitmapData.ctx.lineWidth = 3;
+            ropeBitmapData.ctx.lineWidth = 4;
             ropeBitmapData.ctx.stroke();
             ropeBitmapData.ctx.closePath();
             ropeBitmapData.render();
